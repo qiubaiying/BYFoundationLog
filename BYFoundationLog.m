@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-#ifdef DEBUG
+#ifndef Release
 
 @implementation NSSet(Log)
 
