@@ -1,9 +1,11 @@
 # BYFoundationLog
 
-> 重写 Array、Set、Dictionary 的输出方法，实现在中文（Unicode）字符在控制台的输出
+> 重写 Array、Set、Dictionary 的输出方法，实现中文（Unicode）字符在Xcode控制台的输出
 
 ## Principle
- Xcode 控制台中在输出 Array、Set、Dictionary 时，其中的中文字符会变成Unicode编码 如`"\U67cf\U8367"`，重写输出方法
+ Xcode 控制台中在输出 Array、Set、Dictionary 时，其中的中文字符会变成Unicode编码 如`"\U67cf\U8367"`
+ 
+ 我们可以重写这些类的输出方法,实现中文字符的输出:
  
 	 - (NSString *)descriptionWithLocale:(id)locale indent:(NSUInteger)level
 
