@@ -1,6 +1,10 @@
 # BYFoundationLog
 
-> 重写 Array、Set、Dictionary 的输出方法，实现中文（Unicode）字符在Xcode控制台的输出
+Xcode控制台的输出中文（Unicode）JSON 对象
+
+## Use
+
+直接将 `BYFoundationLog.m` 文件拖入项目中即可使用
 
 ## Principle
  Xcode 控制台中在输出 Array、Set、Dictionary 时，其中的中文字符会变成Unicode编码 如`"\U67cf\U8367"`
@@ -154,6 +158,4 @@
 
 NSSet、NSDictionary 与 NSArray 实现方法类似
 
-## Use
 
-直接将 `BYFoundationLog.m` 文件拖入项目中即可使用
