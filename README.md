@@ -1,12 +1,13 @@
 # BYFoundationLog
 
-Xcode控制台的输出中文（Unicode）JSON 对象
+Xcode控制台的格式化输出中文（Unicode）JSON 对象
 
-## Use
+## Usage
 
 直接将 `BYFoundationLog.m` 文件拖入项目中即可使用
 
 ## Principle
+
  Xcode 控制台中在输出 Array、Set、Dictionary 时，其中的中文字符会变成Unicode编码 如`"\U67cf\U8367"`
  
  我们可以重写这些类的输出方法,实现中文字符的输出:
@@ -14,9 +15,9 @@ Xcode控制台的输出中文（Unicode）JSON 对象
 	 - (NSString *)descriptionWithLocale:(id)locale indent:(NSUInteger)level
 
 ## Effect
-先看看效果：
 
-创建一个字典并输出:
+在控制台输出一个 `Dictionary`:
+
 
     NSData *strData = [@"str -> data格式的字符串" dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -38,8 +39,9 @@ Xcode控制台的输出中文（Unicode）JSON 对象
                                           @"GitHub:https://github.com/qiubaiying",
                                           @"简书:https://http://www.jianshu.com/u/e71990ada2fd"]};
     NSLog(@"%@", dic);
-   
-输出结果：
+   
+
+### 没有 `BYFoundationLog.m` 时的输出：
 	
 	2017-03-01 10:36:45.709 BYFoundationLog_Demo[1657:53604] {
 	    "My bolg" = "http://qiubaiying.top";
@@ -56,7 +58,7 @@ Xcode控制台的输出中文（Unicode）JSON 对象
 	    strData = <73747220 2d3e2064 617461e6 a0bce5bc 8fe79a84 e5ad97e7 aca6e4b8 b2>;
 	}
 	
-将`BYFoundationLog.m`拖入项目，再次运行
+### 导入 `BYFoundationLog.m`，输出：
 
 	2017-03-01 10:35:52.545 BYFoundationLog_Demo[1635:52772] 	{
 		set = 	{(
@@ -156,6 +158,6 @@ Xcode控制台的输出中文（Unicode）JSON 对象
 
 ```
 
-NSSet、NSDictionary 与 NSArray 实现方法类似
+NSSet、NSDictionary 与 NSArray 实现方法类似。
 
 
