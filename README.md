@@ -18,71 +18,74 @@ Xcode控制台的格式化输出中文（Unicode）JSON 对象
 
 在控制台输出一个 `Dictionary`:
 
+```objc
+NSData *strData = [@"str -> data格式的字符串" dataUsingEncoding:NSUTF8StringEncoding];
 
-    NSData *strData = [@"str -> data格式的字符串" dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSData *dicData = [NSJSONSerialization dataWithJSONObject:@{@"key0": @"字典 -> data 的数据",}
-                                                          options:NSJSONWritingPrettyPrinted
-                                                            error:nil];
-    
-    NSMutableSet *set = [NSMutableSet setWithArray:@[@"set0",
-                                                     strData,
-                                                     dicData]];
-    NSDictionary *dic = @{@"name"  : @"BY",
-                           @"My bolg" : @"http://qiubaiying.top",
-                           @"count" : @(11),
-                           @"strData" : strData,
-                           @"dicData" : dicData,
-                           @"set"     : set,
-                           @"Unicode" : @"😀😁🤣😂😄",
-                           @"contact" : @[@"BY Blog:http://qiubaiying.top",
-                                          @"GitHub:https://github.com/qiubaiying",
-                                          @"简书:https://http://www.jianshu.com/u/e71990ada2fd"]};
-    NSLog(@"%@", dic);
-   
+NSData *dicData = [NSJSONSerialization dataWithJSONObject:@{@"key0": @"字典 -> data 的数据",}
+						  options:NSJSONWritingPrettyPrinted
+						    error:nil];
+
+NSMutableSet *set = [NSMutableSet setWithArray:@[@"set0",
+					     strData,
+					     dicData]];
+NSDictionary *dic = @{@"name"  : @"BY",
+		   @"My bolg" : @"http://qiubaiying.top",
+		   @"count" : @(11),
+		   @"strData" : strData,
+		   @"dicData" : dicData,
+		   @"set"     : set,
+		   @"Unicode" : @"😀😁🤣😂😄",
+		   @"contact" : @[@"BY Blog:http://qiubaiying.top",
+				  @"GitHub:https://github.com/qiubaiying",
+				  @"简书:https://http://www.jianshu.com/u/e71990ada2fd"]};
+NSLog(@"%@", dic);
+```   
 
 ### 没有 `BYFoundationLog.m` 时的输出：
-	
-	2017-03-01 10:36:45.709 BYFoundationLog_Demo[1657:53604] {
-	    "My bolg" = "http://qiubaiying.top";
-	    Unicode = "\Ud83d\Ude00\Ud83d\Ude01\Ud83e\Udd23\Ud83d\Ude02\Ud83d\Ude04";
-	    contact =     (
-	        "BY Blog:http://qiubaiying.top",
-	        "GitHub:https://github.com/qiubaiying",
-	        "\U7b80\U4e66:https://http://www.jianshu.com/u/e71990ada2fd"
-	    );
-	    count = 11;
-	    dicData = <7b0a2020 226b6579 3022203a 2022e5ad 97e585b8 202d3e20 64617461 20e79a84 e695b0e6 8dae220a 7d>;
-	    name = BY;
-	    set = "{(\n    <73747220 2d3e2064 617461e6 a0bce5bc 8fe79a84 e5ad97e7 aca6e4b8 b2>,\n    set0,\n    <7b0a2020 226b6579 3022203a 2022e5ad 97e585b8 202d3e20 64617461 20e79a84 e695b0e6 8dae220a 7d>\n)}";
-	    strData = <73747220 2d3e2064 617461e6 a0bce5bc 8fe79a84 e5ad97e7 aca6e4b8 b2>;
-	}
-	
+
+```
+2017-03-01 10:36:45.709 BYFoundationLog_Demo[1657:53604] {
+    "My bolg" = "http://qiubaiying.top";
+    Unicode = "\Ud83d\Ude00\Ud83d\Ude01\Ud83e\Udd23\Ud83d\Ude02\Ud83d\Ude04";
+    contact =     (
+	"BY Blog:http://qiubaiying.top",
+	"GitHub:https://github.com/qiubaiying",
+	"\U7b80\U4e66:https://http://www.jianshu.com/u/e71990ada2fd"
+    );
+    count = 11;
+    dicData = <7b0a2020 226b6579 3022203a 2022e5ad 97e585b8 202d3e20 64617461 20e79a84 e695b0e6 8dae220a 7d>;
+    name = BY;
+    set = "{(\n    <73747220 2d3e2064 617461e6 a0bce5bc 8fe79a84 e5ad97e7 aca6e4b8 b2>,\n    set0,\n    <7b0a2020 226b6579 3022203a 2022e5ad 97e585b8 202d3e20 64617461 20e79a84 e695b0e6 8dae220a 7d>\n)}";
+    strData = <73747220 2d3e2064 617461e6 a0bce5bc 8fe79a84 e5ad97e7 aca6e4b8 b2>;
+}
+```	
+
 ### 导入 `BYFoundationLog.m`，输出：
 
-	2017-03-01 10:35:52.545 BYFoundationLog_Demo[1635:52772] 	{
-		set = 	{(
-			"str -> data格式的字符串",
-			"set0",
-				{
-				key0 = "字典 -> data 的数据",
-			},
-		)},
-		Unicode = "😀😁🤣😂😄",
-		strData = "str -> data格式的字符串",
-		count = 11,
-		dicData = 	{
+```
+2017-03-01 10:35:52.545 BYFoundationLog_Demo[1635:52772] 	{
+	set = 	{(
+		"str -> data格式的字符串",
+		"set0",
+			{
 			key0 = "字典 -> data 的数据",
 		},
-		contact = 	(
-			"BY Blog:http://qiubaiying.top",
-			"GitHub:https://github.com/qiubaiying",
-			"简书:https://http://www.jianshu.com/u/e71990ada2fd",
-		),
-		name = "BY",
-		My bolg = "http://qiubaiying.top",
-	}
-
+	)},
+	Unicode = "😀😁🤣😂😄",
+	strData = "str -> data格式的字符串",
+	count = 11,
+	dicData = 	{
+		key0 = "字典 -> data 的数据",
+	},
+	contact = 	(
+		"BY Blog:http://qiubaiying.top",
+		"GitHub:https://github.com/qiubaiying",
+		"简书:https://http://www.jianshu.com/u/e71990ada2fd",
+	),
+	name = "BY",
+	My bolg = "http://qiubaiying.top",
+}
+```
 
 ## Method
 
