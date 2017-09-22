@@ -39,11 +39,11 @@ NSDictionary *dic = @{@"name"  : @"BY",
 				  @"GitHub:https://github.com/qiubaiying",
 				  @"简书:https://http://www.jianshu.com/u/e71990ada2fd"]};
 NSLog(@"%@", dic);
-```   
+```
 
 ### 没有 `BYFoundationLog.m` 时的输出：
 
-```
+```objc
 2017-03-01 10:36:45.709 BYFoundationLog_Demo[1657:53604] {
     "My bolg" = "http://qiubaiying.top";
     Unicode = "\Ud83d\Ude00\Ud83d\Ude01\Ud83e\Udd23\Ud83d\Ude02\Ud83d\Ude04";
@@ -58,11 +58,14 @@ NSLog(@"%@", dic);
     set = "{(\n    <73747220 2d3e2064 617461e6 a0bce5bc 8fe79a84 e5ad97e7 aca6e4b8 b2>,\n    set0,\n    <7b0a2020 226b6579 3022203a 2022e5ad 97e585b8 202d3e20 64617461 20e79a84 e695b0e6 8dae220a 7d>\n)}";
     strData = <73747220 2d3e2064 617461e6 a0bce5bc 8fe79a84 e5ad97e7 aca6e4b8 b2>;
 }
+
+
 ```	
 
 ### 导入 `BYFoundationLog.m`，输出：
 
-```
+
+```objc
 2017-03-01 10:35:52.545 BYFoundationLog_Demo[1635:52772] 	{
 	set = 	{(
 		"str -> data格式的字符串",
@@ -85,6 +88,7 @@ NSLog(@"%@", dic);
 	name = "BY",
 	My bolg = "http://qiubaiying.top",
 }
+
 ```
 
 ## Method
@@ -93,7 +97,8 @@ NSLog(@"%@", dic);
 
 创建一个 `NSArray` 的分类，重写输出方法
 
-```
+
+```objc
 @implementation NSArray (Log)
 
 - (NSString *)descriptionWithLocale:(id)locale indent:(NSUInteger)level {
